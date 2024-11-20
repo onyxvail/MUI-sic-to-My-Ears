@@ -7,8 +7,7 @@ import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-
-import { SitemarkIcon } from './CustomIcons';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';  // Using MusicNoteIcon
 
 const items = [
   {
@@ -42,9 +41,14 @@ export default function Content() {
     <Stack
       sx={{ flexDirection: 'column', alignSelf: 'center', gap: 4, maxWidth: 450 }}
     >
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-        <SitemarkIcon />
+      <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+        {}
+        <MusicNoteIcon sx={{ color: 'primary.main', marginRight: 1 }} />
+        <Typography variant="h1" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+          MUI-SIC
+        </Typography>
       </Box>
+
       {items.map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>
           {item.icon}
