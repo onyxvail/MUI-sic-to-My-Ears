@@ -2,14 +2,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
+import IconButton from '@mui/material/IconButton';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
+import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';  // Using MusicNoteIcon
+import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 
 const items = [
+  {
+    icon: <MusicNoteIcon sx={{ color: 'text.secondary' }} />,
+    title: 'MUI-SIC',
+    description: 'A musical harmony to enhance your experience.',
+  },
   {
     icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Adaptable performance',
@@ -37,18 +42,42 @@ const items = [
 ];
 
 export default function Content() {
+  const audioRef = React.useRef(null);
+  const [playing, setPlaying] = React.useState(false);
+
+  const togglePlay = () => {
+    if (playing) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setPlaying(!playing);
+  };
+
+  React.useEffect(() => {
+    const audio = new Audio('/background-music.mp3');
+    audio.loop = true;
+    audio.volume = 0.5;
+    audioRef.current = audio;
+
+    return () => {
+    
+      audio.pause();
+    };
+  }, []);
+
   return (
     <Stack
       sx={{ flexDirection: 'column', alignSelf: 'center', gap: 4, maxWidth: 450 }}
     >
       <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-        {}
-        <MusicNoteIcon sx={{ color: 'primary.main', marginRight: 1 }} />
-        <Typography variant="h1" sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+        <IconButton onClick={togglePlay} sx={{ color: 'primary.main', fontSize: 48 }}>
+          <MusicNoteIcon />
+        </IconButton>  {}
+        <Typography variant="h1" sx={{ ml: 2, color: 'primary.main', fontWeight: 'medium' }}>
           MUI-SIC
         </Typography>
       </Box>
-
       {items.map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>
           {item.icon}
