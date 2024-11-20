@@ -11,11 +11,6 @@ import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
 
 const items = [
   {
-    icon: <MusicNoteIcon sx={{ color: 'text.secondary' }} />,
-    title: 'MUI-SIC',
-    description: 'A musical harmony to enhance your experience.',
-  },
-  {
     icon: <SettingsSuggestRoundedIcon sx={{ color: 'text.secondary' }} />,
     title: 'Adaptable performance',
     description:
